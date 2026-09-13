@@ -1,0 +1,3 @@
+---
+secrets:
+  - set a long custom secret in hex
