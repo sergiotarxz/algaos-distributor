@@ -16,7 +16,7 @@ sub welcome ($self) {
 
 sub webrsync ($self) {
     my $machine_id = $self->param('machine_id');
-    my $tag        = 'latest';
+    my $tag        = 'next';
 
     my $file = "/var/www/algaos/downloads/webrsync-$tag.tar.bz2";
 
@@ -26,7 +26,7 @@ sub webrsync ($self) {
 }
 
 sub binpkg ($self) {
-    my $tag = 'latest';
+    my $tag = 'next';
 
     my $root = path("/var/www/algaos/downloads/binpkg-algaos-$tag")->realpath;
 
