@@ -14,9 +14,18 @@ sub welcome ($self) {
     $self->render( text => 'hola' );
 }
 
+sub _get_preference($self) {
+    my $preference = $self->param('preference');
+    return if !defined $preference;
+    if (!grep { $_ eq $preference } (qw/latest next stable/)) {
+        die 'Unhandled Bad Argument';
+    }
+    return $preference;
+}
+
 sub webrsync ($self) {
     my $machine_id = $self->param('machine_id');
-    my $tag        = 'next';
+    my $tag        = $self->_get_preference // 'next';
 
     my $file = "/var/www/algaos/downloads/webrsync-$tag.tar.bz2";
 
@@ -26,7 +35,8 @@ sub webrsync ($self) {
 }
 
 sub binpkg ($self) {
-    my $tag = 'next';
+    my $machine_id = $self->param('machine_id');
+    my $tag        = $self->_get_preference // 'next';
 
     my $root = path("/var/www/algaos/downloads/binpkg-algaos-$tag")->realpath;
 
