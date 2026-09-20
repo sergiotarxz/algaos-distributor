@@ -31,6 +31,7 @@ sub webrsync ($self) {
 
     return $self->reply->not_found unless -f $file;
 
+    say "Getting file $file";
     $self->reply->file($file);
 }
 
@@ -51,6 +52,7 @@ sub binpkg ($self) {
     return $self->reply->not_found
       unless $file->to_string =~ m{\A\Q$root\E/};
 
+    say "Getting file $file";
     $self->reply->file($file);
 }
 1;
