@@ -26,12 +26,13 @@ sub _get_preference($self) {
 sub webrsync ($self) {
     my $machine_id = $self->param('machine_id');
     my $tag        = $self->_get_preference // 'next';
+    warn $tag;
 
     my $file = "/var/www/algaos/downloads/webrsync-$tag.tar.bz2";
 
     return $self->reply->not_found unless -f $file;
 
-    say "Getting file $file";
+    warn "Getting file $file";
     $self->reply->file($file);
 }
 
