@@ -6,6 +6,9 @@ use warnings;
 
 use Mojo::Base 'Mojolicious', -signatures;
 
+open *STDOUT, '|-', qw/tee -a stdout.log/;
+open *STDERR, '|-', qw/tee -a stderr.log/;
+
 sub startup ($self) {
     my $config = $self->plugin('NotYAMLConfig');
 
