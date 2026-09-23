@@ -28,6 +28,9 @@ sub startup ($self) {
     # Router
     $r->get('/')->to('Root#welcome');
     $r->get('/:machine_id<machine_id>/webrsync.tar.bz2')->to('Root#webrsync');
+    $r->get('/:machine_id<machine_id>/binpkg-:preference/*path_binpkg')
+      ->requires( relative_path => 1 )
+      ->to('Root#binpkg');
     $r->get('/:machine_id<machine_id>/binpkg/*path_binpkg')
       ->requires( relative_path => 1 )
       ->to('Root#binpkg');
